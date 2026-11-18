@@ -1,0 +1,9 @@
+{
+    "sw-settings-basic-information": {
+        "captcha": {
+            "label": {
+                "gatechaCaptcha": "GateCHA (self-hosted ALTCHA)"
+            }
+        }
+    }
+}

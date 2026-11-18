@@ -1,0 +1,11 @@
+{
+    "error": {
+        "captcha": {
+            "gatecha-missing": "Bitte bestätigen Sie, dass Sie kein Roboter sind.",
+            "gatecha-invalid": "Die Spam-Prüfung ist fehlgeschlagen. Bitte bestätigen Sie erneut, dass Sie kein Roboter sind.",
+            "gatecha-expired": "Die Spam-Prüfung ist abgelaufen. Bitte bestätigen Sie erneut, dass Sie kein Roboter sind.",
+            "gatecha-bot-suspected": "Ihre Eingabe wurde als automatisiert eingestuft. Bitte versuchen Sie es erneut oder kontaktieren Sie uns auf anderem Weg.",
+            "gatecha-unavailable": "Die Spam-Prüfung ist derzeit nicht erreichbar. Bitte versuchen Sie es später erneut."
+        }
+    }
+}

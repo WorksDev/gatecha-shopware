@@ -1,0 +1,11 @@
+{
+    "error": {
+        "captcha": {
+            "gatecha-missing": "Please confirm that you are not a robot.",
+            "gatecha-invalid": "The spam check failed. Please confirm again that you are not a robot.",
+            "gatecha-expired": "The spam check has expired. Please confirm again that you are not a robot.",
+            "gatecha-bot-suspected": "Your submission was classified as automated. Please try again or contact us another way.",
+            "gatecha-unavailable": "The spam check is currently unavailable. Please try again later."
+        }
+    }
+}

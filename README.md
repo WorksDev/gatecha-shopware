@@ -1,0 +1,1 @@
+# GateCHA für Shopware 6

@@ -1,0 +1,55 @@
+{% block component_captcha_gatecha %}
+    {% set gatechaConfigPrefix = constant('Itw\\Gatecha\\Config\\GatechaConfig::PREFIX') %}
+    {% set gatechaPayloadName = constant('Itw\\Gatecha\\Captcha\\GatechaCaptcha::PAYLOAD_PARAMETER') %}
+
+    {% set gatechaUrl = config(gatechaConfigPrefix ~ 'url')|default('')|trim|trim('/', 'right') %}
+    {% set gatechaApiKey = config(gatechaConfigPrefix ~ 'apiKey')|default('')|trim %}
+    {% set gatechaDisplay = config(gatechaConfigPrefix ~ 'display')|default('standard') %}
+    {% set gatechaAuto = config(gatechaConfigPrefix ~ 'autoMode')|default('off') %}
+    {% if gatechaDisplay == 'invisible' %}
+        {% set gatechaAuto = 'onsubmit' %}
+    {% endif %}
+
+    {% set gatechaWidgetConfiguration = {
+        hideLogo: config(gatechaConfigPrefix ~ 'hideLogo') is same as(false) ? false : true,
+        hideFooter: config(gatechaConfigPrefix ~ 'hideFooter') is same as(false) ? false : true,
+    } %}
+
+    {% set gatechaFeedbackId = formId ~ '-gatecha-feedback' %}
+
+    <div class="captcha-gatecha form-group{% if additionalClass %} {{ additionalClass }}{% endif %}">
+        {% block component_captcha_gatecha_widget %}
+            {% if gatechaUrl is not empty and gatechaApiKey is not empty %}
+                <altcha-widget
+                    name="{{ gatechaPayloadName }}"
+                    challenge="{{ gatechaUrl }}/api/v1/challenge?apiKey={{ gatechaApiKey|url_encode }}"
+                    type="{{ config(gatechaConfigPrefix ~ 'widgetType')|default('checkbox') }}"
+                    display="{{ gatechaDisplay }}"
+                    auto="{{ gatechaAuto }}"
+                    configuration="{{ gatechaWidgetConfiguration|json_encode }}"
+                    {% if config(gatechaConfigPrefix ~ 'his') is not same as(false) %}
+                        data-gatecha-his="{{ gatechaUrl }}/api/public/his.js"
+                    {% endif %}
+                    aria-describedby="{{ gatechaFeedbackId }}"
+                ></altcha-widget>
+            {% endif %}
+        {% endblock %}
+
+        {% block component_captcha_gatecha_feedback %}
+            <div id="{{ gatechaFeedbackId }}" class="form-field-feedback">
+                {% if formViolations is defined and formViolations %}
+                    {% for violation in formViolations.getViolations('/' ~ gatechaPayloadName) %}
+                        <div class="invalid-feedback d-block">
+                            {{ ('error.' ~ violation.code)|trans|sw_sanitize }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endblock %}
+    </div>
+
+    {% block component_captcha_gatecha_scripts %}
+        <script type="module" src="{{ asset('bundles/itwgatecha/js/altcha.min.js', 'asset') }}"></script>
+        <script type="module" src="{{ asset('bundles/itwgatecha/js/gatecha.js', 'asset') }}"></script>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="itw_gatecha.http_client" class="GuzzleHttp\Client"/>
+
+        <service id="Itw\Gatecha\Service\GatechaVerifier">
+            <argument type="service" id="itw_gatecha.http_client"/>
+            <argument type="service" id="logger"/>
+            <tag name="monolog.logger" channel="itw_gatecha"/>
+        </service>
+
+        <service id="Itw\Gatecha\Captcha\GatechaCaptcha">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Itw\Gatecha\Service\GatechaVerifier"/>
+            <tag name="shopware.storefront.captcha" priority="50"/>
+            <tag name="kernel.reset" method="reset"/>
+        </service>
+    </services>
+</container>

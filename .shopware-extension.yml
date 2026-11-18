@@ -1,0 +1,8 @@
+build:
+  zip:
+    composer:
+      enabled: false
+    assets:
+      enabled: false
+changelog:
+  enabled: true

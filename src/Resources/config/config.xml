@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>GateCHA server</title>
+        <title lang="de-DE">GateCHA-Server</title>
+
+        <input-field type="url">
+            <name>url</name>
+            <label>GateCHA URL</label>
+            <label lang="de-DE">GateCHA-URL</label>
+            <placeholder>https://gatecha.example.com</placeholder>
+            <helpText>Base URL of your GateCHA instance, without /api/... and without trailing slash.</helpText>
+            <helpText lang="de-DE">Basis-URL Ihrer GateCHA-Instanz, ohne /api/... und ohne abschließenden Schrägstrich.</helpText>
+        </input-field>
+
+        <input-field type="text">
+            <name>apiKey</name>
+            <label>API key (gk_…)</label>
+            <label lang="de-DE">API-Key (gk_…)</label>
+            <placeholder>gk_…</placeholder>
+            <helpText>Public key from the GateCHA dashboard. It is part of the page HTML, so restrict it to your shop domain in GateCHA. Set a separate key per sales channel if the domains differ.</helpText>
+            <helpText lang="de-DE">Öffentlicher Key aus dem GateCHA-Dashboard. Er steht im HTML der Seite, deshalb in GateCHA auf die Shop-Domain beschränken. Bei unterschiedlichen Domains pro Verkaufskanal einen eigenen Key hinterlegen.</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>his</name>
+            <label>Send Human Interaction Signals (HIS)</label>
+            <label lang="de-DE">Human Interaction Signals (HIS) senden</label>
+            <defaultValue>true</defaultValue>
+            <helpText>Loads his.js from your GateCHA server and forwards the signals on verification. Required if the key has "Block suspected bots" enabled.</helpText>
+            <helpText lang="de-DE">Lädt his.js von Ihrem GateCHA-Server und übergibt die Signale bei der Prüfung. Nötig, wenn beim Key „Verdächtige Bots blockieren" aktiv ist.</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>failOpen</name>
+            <label>Accept forms while GateCHA is unreachable</label>
+            <label lang="de-DE">Formulare annehmen, wenn GateCHA nicht erreichbar ist</label>
+            <defaultValue>false</defaultValue>
+            <helpText>Off: forms are rejected while GateCHA cannot be reached or is misconfigured. On: they are accepted without verification.</helpText>
+            <helpText lang="de-DE">Aus: Formulare werden abgelehnt, solange GateCHA nicht erreichbar oder falsch konfiguriert ist. An: Sie werden dann ohne Prüfung angenommen.</helpText>
+        </input-field>
+
+        <input-field type="int">
+            <name>timeout</name>
+            <label>Verification timeout (seconds)</label>
+            <label lang="de-DE">Timeout der Prüfung (Sekunden)</label>
+            <defaultValue>5</defaultValue>
+            <min>1</min>
+            <max>30</max>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Widget</title>
+        <title lang="de-DE">Widget</title>
+
+        <input-field type="single-select">
+            <name>display</name>
+            <label>Display</label>
+            <label lang="de-DE">Darstellung</label>
+            <defaultValue>standard</defaultValue>
+            <options>
+                <option><id>standard</id><name>Inline</name><name lang="de-DE">Im Formular</name></option>
+                <option><id>floating</id><name>Floating (at the submit button)</name><name lang="de-DE">Schwebend (am Absenden-Button)</name></option>
+                <option><id>overlay</id><name>Overlay</name><name lang="de-DE">Overlay</name></option>
+                <option><id>bar</id><name>Bar at the edge of the screen</name><name lang="de-DE">Leiste am Bildschirmrand</name></option>
+                <option><id>invisible</id><name>Invisible (verifies on submit)</name><name lang="de-DE">Unsichtbar (prüft beim Absenden)</name></option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>widgetType</name>
+            <label>Control</label>
+            <label lang="de-DE">Bedienelement</label>
+            <defaultValue>checkbox</defaultValue>
+            <options>
+                <option><id>checkbox</id><name>Checkbox</name><name lang="de-DE">Checkbox</name></option>
+                <option><id>switch</id><name>Switch</name><name lang="de-DE">Schalter</name></option>
+                <option><id>native</id><name>Native checkbox</name><name lang="de-DE">Native Checkbox</name></option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>autoMode</name>
+            <label>Automatic verification</label>
+            <label lang="de-DE">Automatische Prüfung</label>
+            <defaultValue>off</defaultValue>
+            <helpText>When the proof of work starts without a click. "Invisible" display always uses "on submit".</helpText>
+            <helpText lang="de-DE">Wann die Prüfung ohne Klick startet. Bei Darstellung „Unsichtbar" wird immer „beim Absenden" verwendet.</helpText>
+            <options>
+                <option><id>off</id><name>Off (click)</name><name lang="de-DE">Aus (Klick)</name></option>
+                <option><id>onfocus</id><name>When the form is focused</name><name lang="de-DE">Beim Fokus auf das Formular</name></option>
+                <option><id>onload</id><name>On page load</name><name lang="de-DE">Beim Laden der Seite</name></option>
+                <option><id>onsubmit</id><name>On submit</name><name lang="de-DE">Beim Absenden</name></option>
+            </options>
+        </input-field>
+
+        <input-field type="bool">
+            <name>hideLogo</name>
+            <label>Hide ALTCHA logo</label>
+            <label lang="de-DE">ALTCHA-Logo ausblenden</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>hideFooter</name>
+            <label>Hide ALTCHA footer</label>
+            <label lang="de-DE">ALTCHA-Fußzeile ausblenden</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+    </card>
+</config>

@@ -2,7 +2,7 @@
     "name": "itw/gatecha-shopware",
     "description": "GateCHA (self-hosted ALTCHA) spam protection for Shopware 6",
     "type": "shopware-platform-plugin",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "GPL-2.0-or-later",
     "authors": [
         {

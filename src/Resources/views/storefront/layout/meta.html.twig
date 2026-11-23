@@ -1,0 +1,16 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{% block layout_head_javascript_recaptcha %}
+    {{ parent() }}
+
+    {% block layout_head_javascript_gatecha %}
+        {% set gatechaConfigPrefix = constant('Itw\\Gatecha\\Config\\GatechaConfig::PREFIX') %}
+
+        {% if config('core.basicInformation.activeCaptchasV2.gatechaCaptcha.isActive')
+            and config(gatechaConfigPrefix ~ 'url')|default('')|trim is not empty
+            and config(gatechaConfigPrefix ~ 'apiKey')|default('')|trim is not empty %}
+            <script type="module" src="{{ asset('bundles/itwgatecha/js/altcha.min.js', 'asset') }}"></script>
+            <script type="module" src="{{ asset('bundles/itwgatecha/js/gatecha.js', 'asset') }}"></script>
+        {% endif %}
+    {% endblock %}
+{% endblock %}
